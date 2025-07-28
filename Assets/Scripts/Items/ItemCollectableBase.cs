@@ -13,7 +13,7 @@ public class ItemCollectableBase : MonoBehaviour
     [Header("Sounds")]
     public AudioSource audioSource;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.transform.CompareTag(compareTag))
         {
