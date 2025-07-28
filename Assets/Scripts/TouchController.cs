@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class TouchController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Vector2 pastPosition;
+    public float velocity = 1f;
+
+    private void Update()
     {
-        
+        if(Input.GetMouseButton(0))
+        {
+            Move(Input.mousePosition.x - pastPosition.x);
+        }
+        pastPosition = Input.mousePosition;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Move(float speed)
     {
-        
+        transform.position += Vector3.right * Time.deltaTime * speed * velocity;
     }
 }
