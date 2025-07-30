@@ -8,7 +8,7 @@ public class ItemCollectableBase : MonoBehaviour
     public float timeToHide = 3f;
     public ParticleSystem itemParticleSystem;
     public GameObject graphicItem;
-    public Collider2D colliderItem;
+    public Collider colliderItem;
 
     [Header("Sounds")]
     public AudioSource audioSource;
