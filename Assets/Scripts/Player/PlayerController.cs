@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Ebac.Core.Singleton;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     [Header("Lerp")]
     public float lerpSpeed = 1f;
@@ -13,12 +14,26 @@ public class PlayerController : MonoBehaviour
     public string tagEndLine = "EndLine";
     public GameObject endScreen;
 
-    private Vector3 _pos;
     private bool _canRun;
+    private float _currentSpeed;
+    private Vector3 _pos;
+    private Vector3 _startPosition;
 
     public void StartRun()
     {
         _canRun = true;
+    }
+
+    private void EndGame()
+    {
+        _canRun = false;
+        endScreen.SetActive(true);
+    }
+
+    private void Start()
+    {
+        _startPosition = transform.position;
+        ResetSpeed();
     }
 
     private void Update()
@@ -30,13 +45,7 @@ public class PlayerController : MonoBehaviour
         _pos.z = transform.position.z;
 
         transform.position = Vector3.Lerp(transform.position, _pos, lerpSpeed * Time.deltaTime);
-        transform.Translate(transform.forward * speed * Time.deltaTime);
-    }
-
-    private void EndGame()
-    {
-        _canRun = false;
-        endScreen.SetActive(true);
+        transform.Translate(transform.forward * _currentSpeed * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -54,4 +63,22 @@ public class PlayerController : MonoBehaviour
             EndGame();
         }
     }
+    #region POWER-UPS
+
+    public void SetPowerUpText(string s)
+    {
+        // uiTextPowerUp.text = s;
+    }
+
+    public void PowerUpSpeedUp(float f)
+    {
+        _currentSpeed = f;
+    }
+
+    public void ResetSpeed()
+    {
+        _currentSpeed = speed;
+    }
+
+    #endregion
 }
