@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ebac.Core.Singleton;
+using TMPro;
+using DG.Tweening;
 
 public class PlayerController : Singleton<PlayerController>
 {
@@ -9,10 +11,12 @@ public class PlayerController : Singleton<PlayerController>
     public float lerpSpeed = 1f;
     public Transform target;
 
+    public bool invincible = false;
     public float speed = 1f;
     public string tagEnemy = "Enemy";
     public string tagEndLine = "EndLine";
     public GameObject endScreen;
+    public TextMeshPro uiTextPowerUp;
 
     private bool _canRun;
     private float _currentSpeed;
@@ -52,7 +56,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         if(collision.transform.tag == tagEnemy)
         {
-            EndGame();
+            if(!invincible) EndGame();
         }
     }
 
@@ -60,14 +64,15 @@ public class PlayerController : Singleton<PlayerController>
     {
         if(other.transform.tag == tagEndLine)
         {
-            EndGame();
+            if(!invincible) EndGame();
         }
     }
+
     #region POWER-UPS
 
     public void SetPowerUpText(string s)
     {
-        // uiTextPowerUp.text = s;
+        uiTextPowerUp.text = s;
     }
 
     public void PowerUpSpeedUp(float f)
@@ -80,5 +85,23 @@ public class PlayerController : Singleton<PlayerController>
         _currentSpeed = speed;
     }
 
+    public void SetInvincible(bool b)
+    {
+        invincible = b;
+    }
+
+    public void ChangeHeight(float amount, float duration, float animationDuration, Ease ease)
+    {
+        var p = transform.position;
+        p.y = _startPosition.y + amount;
+        transform.position = p;
+    }
+
+    public void ResetHeight()
+    {
+        var p = transform.position;
+        p.y = _startPosition.y;
+        transform.position = p;
+    }
     #endregion
 }
