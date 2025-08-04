@@ -11,6 +11,9 @@ public class PlayerController : Singleton<PlayerController>
     public float lerpSpeed = 1f;
     public Transform target;
 
+    [Header("Coin Setup")]
+    public GameObject coinCollector;
+
     public bool invincible = false;
     public float speed = 1f;
     public string tagEnemy = "Enemy";
@@ -90,18 +93,27 @@ public class PlayerController : Singleton<PlayerController>
         invincible = b;
     }
 
-    public void ChangeHeight(float amount, float duration, float animationDuration, Ease ease)
+    public void ChangeHeight(float amount, float animationDuration)
     {
-        var p = transform.position;
+        /* var p = transform.position;
         p.y = _startPosition.y + amount;
-        transform.position = p;
+        transform.position = p; */
+
+        transform.DOMoveY(_startPosition.y + amount, animationDuration).SetEase(Ease.OutBack);
     }
 
-    public void ResetHeight()
+    public void ResetHeight(float animationDuration, Ease ease)
     {
-        var p = transform.position;
+        /* var p = transform.position;
         p.y = _startPosition.y;
-        transform.position = p;
+        transform.position = p; */ 
+
+        transform.DOMoveY(_startPosition.y, animationDuration).SetEase(ease);
+    }
+
+    public void ChangeCoinCollectorSize(float amount)
+    {
+        coinCollector.transform.localScale = Vector3.one * amount;
     }
     #endregion
 }

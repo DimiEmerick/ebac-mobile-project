@@ -26,6 +26,7 @@ public class ItemCollectableBase : MonoBehaviour
         if (graphicItem != null) graphicItem.SetActive(false);
         Invoke("HideObject", timeToHide);
         colliderItem.enabled = false;
+
         OnCollect();
     }
 
