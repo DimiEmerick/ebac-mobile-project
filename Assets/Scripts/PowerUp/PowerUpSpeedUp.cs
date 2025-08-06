@@ -12,6 +12,7 @@ public class PowerUpSpeedUp : PowerUpBase
         base.StartPowerUp();
         PlayerController.Instance.PowerUpSpeedUp(amountToSpeed);
         PlayerController.Instance.SetPowerUpText("Speed Up!");
+        PlayerController.Instance.StartRun();
     }
 
     protected override void EndPowerUp()
@@ -19,5 +20,6 @@ public class PowerUpSpeedUp : PowerUpBase
         base.EndPowerUp();
         PlayerController.Instance.ResetSpeed();
         PlayerController.Instance.SetPowerUpText("");
+        PlayerController.Instance.StartRun();
     }
 }

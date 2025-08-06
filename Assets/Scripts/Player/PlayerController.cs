@@ -14,6 +14,9 @@ public class PlayerController : Singleton<PlayerController>
     [Header("Coin Setup")]
     public GameObject coinCollector;
 
+    [Header("Animation")]
+    public AnimatorManager animatorManager;
+
     public bool invincible = false;
     public float speed = 1f;
     public string tagEnemy = "Enemy";
@@ -23,18 +26,46 @@ public class PlayerController : Singleton<PlayerController>
 
     private bool _canRun;
     private float _currentSpeed;
+    private float _baseSpeedOfAnimation = 5f;
     private Vector3 _pos;
     private Vector3 _startPosition;
 
     public void StartRun()
     {
         _canRun = true;
+        animatorManager.Play(AnimatorManager.AnimationType.RUN, _currentSpeed / _baseSpeedOfAnimation);
     }
 
-    private void EndGame()
+    private void EndGame(AnimatorManager.AnimationType animationType = AnimatorManager.AnimationType.IDLE)
     {
         _canRun = false;
         endScreen.SetActive(true);
+        animatorManager.Play(animationType);
+    }
+
+    private void MoveBack(Transform t)
+    {
+        t.DOMoveZ(1.25f, .75f).SetRelative().SetEase(Ease.OutCubic);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == tagEnemy)
+        {
+            if (!invincible) 
+            { 
+                EndGame(AnimatorManager.AnimationType.DEATH);
+                MoveBack(collision.transform);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.tag == tagEndLine)
+        {
+            if(!invincible) EndGame(AnimatorManager.AnimationType.IDLE);
+        }
     }
 
     private void Start()
@@ -53,22 +84,6 @@ public class PlayerController : Singleton<PlayerController>
 
         transform.position = Vector3.Lerp(transform.position, _pos, lerpSpeed * Time.deltaTime);
         transform.Translate(transform.forward * _currentSpeed * Time.deltaTime);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.transform.tag == tagEnemy)
-        {
-            if(!invincible) EndGame();
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.transform.tag == tagEndLine)
-        {
-            if(!invincible) EndGame();
-        }
     }
 
     #region POWER-UPS
