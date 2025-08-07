@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4029740124765706398}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 120}
+  m_LocalPosition: {x: 0, y: 0, z: 120}
   m_LocalScale: {x: 1.25, y: 1, z: 25}
   m_Children: []
   m_Father: {fileID: 4029740126337003114}
@@ -155,7 +155,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4029740126069852451}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4029740126475723100}
@@ -220,7 +220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4029740126460975519}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4029740126879873600}
@@ -613,10 +613,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_EndLine
       objectReference: {fileID: 0}
-    - target: {fileID: 1188146872459511883, guid: 0056a55cb796df24bbfbfa8b1f62a0ba, type: 3}
-      propertyPath: m_TagString
-      value: EndLine
-      objectReference: {fileID: 0}
     - target: {fileID: 5362304612362571652, guid: 0056a55cb796df24bbfbfa8b1f62a0ba, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -627,7 +623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5362304612362571652, guid: 0056a55cb796df24bbfbfa8b1f62a0ba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5362304612362571652, guid: 0056a55cb796df24bbfbfa8b1f62a0ba, type: 3}
       propertyPath: m_LocalPosition.z

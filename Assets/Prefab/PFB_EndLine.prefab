@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2649854950474090471}
   m_Layer: 0
   m_Name: PFB_EndLine
-  m_TagString: Enemy
+  m_TagString: EndLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
