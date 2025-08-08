@@ -744,6 +744,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395138952}
   m_CullTransparentMesh: 1
+--- !u!1 &429801257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 429801258}
+  - component: {fileID: 429801259}
+  m_Layer: 0
+  m_Name: ArtManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &429801258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429801257}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1887757980}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &429801259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429801257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ff1caeea7ca4346b7768299caa0a89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  artSetups:
+  - artType: 0
+    gameObject: {fileID: 3448162302507533834, guid: 05b37e57438a7cf408910aa1e17aac56, type: 3}
+  - artType: 1
+    gameObject: {fileID: 4888813146537278871, guid: f0871026f32a7914b9c76053769ab4a7, type: 3}
+  - artType: 2
+    gameObject: {fileID: 5778083096791562322, guid: 0cf8342a4b7ef534a9f29b4f28df8803, type: 3}
 --- !u!1 &431070632
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,7 +953,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 650565590}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.25036526, y: 0.56021357, z: 0.76364374}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1887757980}
@@ -1075,7 +1125,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 912788868}
-  m_LocalRotation: {x: 0.35189503, y: -0.089721836, z: 0.033908557, w: 0.9311123}
+  m_LocalRotation: {x: 0.35189506, y: -0.08972184, z: 0.033908553, w: 0.9311123}
   m_LocalPosition: {x: 1.99, y: 9.69, z: -10.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1160,7 +1210,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.35189503, y: -0.089721836, z: 0.033908557, w: 0.9311123}
+  m_LocalRotation: {x: 0.35189506, y: -0.08972184, z: 0.033908553, w: 0.9311123}
   m_LocalPosition: {x: 1.99, y: 9.69, z: -10.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2162,6 +2212,7 @@ Transform:
   m_Children:
   - {fileID: 650565591}
   - {fileID: 1930224524}
+  - {fileID: 429801258}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2226,18 +2277,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b241ae93891e0df4abde4dd189f1162d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  container: {fileID: 201416079}
-  levelTiles:
-  - {fileID: 2107403418265562509, guid: 63e3a143d2431de49a915ea0206774c7, type: 3}
-  - {fileID: 4966115457430245804, guid: 1e0598edaaa9493499ae00f11066a595, type: 3}
-  levelTilesStart:
-  - {fileID: 2107403418265562509, guid: 63f704874fd1da0458054a412e1dda6c, type: 3}
-  levelTilesEnd:
-  - {fileID: 2107403418265562509, guid: 1e4d86c14395e9e4ab14ccd1daacbaf1, type: 3}
-  tilesNumber: 5
-  tilesNumberStart: 1
-  tilesNumberEnd: 1
   timeBetweenTiles: 0.1
+  container: {fileID: 201416079}
+  levelTileBaseSetups:
+  - {fileID: 11400000, guid: af808460f2ef1524fb85d693c3b4ed47, type: 2}
+  - {fileID: 11400000, guid: f31c841b977a4f2449280cec2c8f6a42, type: 2}
+  - {fileID: 11400000, guid: f23d77df1ee82ab4c9f3710632324294, type: 2}
+  _index: 0
+  _spawnedTiles: []
 --- !u!1 &1934106420
 GameObject:
   m_ObjectHideFlags: 0

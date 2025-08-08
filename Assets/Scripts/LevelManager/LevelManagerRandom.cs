@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class LevelManagerRandom : MonoBehaviour
 {
-    public Transform container;
-
-    [Header("Tiles")]
-    public List<LevelTileBase> levelTiles;
-    public List<LevelTileBase> levelTilesStart;
-    public List<LevelTileBase> levelTilesEnd;
-    public int tilesNumber = 5;
-    public int tilesNumberStart = 5;
-    public int tilesNumberEnd = 5;
     public float timeBetweenTiles = .3f;
+    public Transform container;
+    public List<SOLevelTileSetup> levelTileBaseSetups;
 
-    private List<LevelTileBase> _spawnedTiles;
+    [SerializeField] private int _index;
+    [SerializeField] private List<LevelTileBase> _spawnedTiles = new List<LevelTileBase>();
+    private SOLevelTileSetup _currentSetup;
 
     private void Start()
     {
@@ -36,28 +31,70 @@ public class LevelManagerRandom : MonoBehaviour
             var lastTile = _spawnedTiles[_spawnedTiles.Count - 1];
             spawnedTile.transform.position = lastTile.endTile.position;
         }
+        else
+        {
+            spawnedTile.transform.position = Vector3.zero;
+        }
+        foreach(var piece in spawnedTile.GetComponentsInChildren<ArtPiece>())
+        {
+            piece.ChangePiece(ArtManager.Instance.GetSetupByType(_currentSetup.artType).gameObject);
+        }
         _spawnedTiles.Add(spawnedTile);
+    }
+
+    private void ResetLevelIndex()
+    {
+        _index = 0;
+    }
+
+    private void CleanSpawnedTiles()
+    {
+        for(int i = _spawnedTiles.Count - 1; i >= 0; i--)
+        {
+            Destroy(_spawnedTiles[i].gameObject);
+        }
+        _spawnedTiles.Clear();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            StartCoroutine(CreateLevelTileCoroutine());
+        }
     }
 
     IEnumerator CreateLevelTileCoroutine()
     {
-        _spawnedTiles = new List<LevelTileBase>();
+        CleanSpawnedTiles();
 
-        for (int i = 0; i < tilesNumberStart; i++)
+        if (_currentSetup != null)
         {
-            CreateLevelTile(levelTilesStart);
+            _index++;
+
+            if(_index >= levelTileBaseSetups.Count)
+            {
+                ResetLevelIndex();
+            }
+        }
+
+        _currentSetup = levelTileBaseSetups[_index];
+
+        for (int i = 0; i < _currentSetup.tilesNumberStart; i++)
+        {
+            CreateLevelTile(_currentSetup.levelTilesStart);
             yield return new WaitForSeconds(timeBetweenTiles);
         }
 
-        for (int i = 0; i < tilesNumber; i++)
+        for (int i = 0; i < _currentSetup.tilesNumber; i++)
         {
-            CreateLevelTile(levelTiles);
+            CreateLevelTile(_currentSetup.levelTiles);
             yield return new WaitForSeconds(timeBetweenTiles);
         }
 
-        for (int i = 0; i < tilesNumberEnd; i++)
+        for (int i = 0; i < _currentSetup.tilesNumberEnd; i++)
         {
-            CreateLevelTile(levelTilesEnd);
+            CreateLevelTile(_currentSetup.levelTilesEnd);
             yield return new WaitForSeconds(timeBetweenTiles);
         }
     }
