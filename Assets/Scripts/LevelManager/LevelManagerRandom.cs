@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class LevelManagerRandom : MonoBehaviour
 {
     public float timeBetweenTiles = .3f;
+    public float tileSpawnAnimationTime = .5f;
     public Transform container;
     public List<SOLevelTileSetup> levelTileBaseSetups;
 
@@ -30,6 +32,8 @@ public class LevelManagerRandom : MonoBehaviour
         {
             var lastTile = _spawnedTiles[_spawnedTiles.Count - 1];
             spawnedTile.transform.position = lastTile.endTile.position;
+            spawnedTile.transform.DOMoveZ(lastTile.endTile.position.z - 3, .2f);
+            spawnedTile.transform.DOMoveZ(lastTile.endTile.position.z, tileSpawnAnimationTime).SetEase(Ease.OutBounce);
         }
         else
         {
@@ -79,6 +83,7 @@ public class LevelManagerRandom : MonoBehaviour
         }
 
         _currentSetup = levelTileBaseSetups[_index];
+        ColorManager.Instance.ChangeColorByType(_currentSetup.artType);
 
         for (int i = 0; i < _currentSetup.tilesNumberStart; i++)
         {
