@@ -20,6 +20,8 @@ MonoBehaviour:
   - {fileID: 2107403418265562509, guid: 63e3a143d2431de49a915ea0206774c7, type: 3}
   - {fileID: 4966115457430245804, guid: 1e0598edaaa9493499ae00f11066a595, type: 3}
   - {fileID: 4966115457430245804, guid: 326b598d43c7b8243bca16c5f1b9c8a3, type: 3}
+  - {fileID: 2107403418265562509, guid: 57ebf80ac2acd01409a3b5daab592233, type: 3}
+  - {fileID: 2107403418265562509, guid: 358aac713dd14e9409808eb74e77a3c6, type: 3}
   levelTilesStart:
   - {fileID: 2107403418265562509, guid: 63f704874fd1da0458054a412e1dda6c, type: 3}
   levelTilesEnd:
