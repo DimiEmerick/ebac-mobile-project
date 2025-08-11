@@ -68,6 +68,7 @@ public class LevelManagerRandom : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha0))
         {
             CreateLevelTileCoroutine();
+            CoinsAnimatorManager.Instance.ClearCoins();
         }
     }
 
@@ -102,7 +103,7 @@ public class LevelManagerRandom : MonoBehaviour
         {
             CreateLevelTile(_currentSetup.levelTilesEnd);
         }
-        StartCoroutine(ScaleTilesByTime());
+        StartCoroutine(ScaleTilesByTime()); 
     }
 
     IEnumerator ScaleTilesByTime()
@@ -119,5 +120,7 @@ public class LevelManagerRandom : MonoBehaviour
             _spawnedTiles[i].transform.DOScale(1, scaleDuration).SetEase(ease);
             yield return new WaitForSeconds(scaleTimeBetweenTiles);
         }
+
+        CoinsAnimatorManager.Instance.StartAnimations();
     }
 }
