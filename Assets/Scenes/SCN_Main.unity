@@ -1125,7 +1125,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 912788868}
-  m_LocalRotation: {x: 0.35189503, y: -0.08972187, z: 0.03390857, w: 0.9311123}
+  m_LocalRotation: {x: 0.35189503, y: -0.089721836, z: 0.033908557, w: 0.9311123}
   m_LocalPosition: {x: 1.99, y: 9.69, z: -10.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1210,7 +1210,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.35189503, y: -0.08972187, z: 0.03390857, w: 0.9311123}
+  m_LocalRotation: {x: 0.35189503, y: -0.089721836, z: 0.033908557, w: 0.9311123}
   m_LocalPosition: {x: 1.99, y: 9.69, z: -10.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2339,12 +2339,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenTiles: 0.1
-  tileSpawnAnimationTime: 0.5
   container: {fileID: 201416079}
   levelTileBaseSetups:
   - {fileID: 11400000, guid: af808460f2ef1524fb85d693c3b4ed47, type: 2}
   - {fileID: 11400000, guid: f31c841b977a4f2449280cec2c8f6a42, type: 2}
   - {fileID: 11400000, guid: f23d77df1ee82ab4c9f3710632324294, type: 2}
+  scaleDuration: 0.25
+  scaleTimeBetweenTiles: 0.1
+  ease: 27
   _index: 0
   _spawnedTiles: []
 --- !u!1 &1934106420

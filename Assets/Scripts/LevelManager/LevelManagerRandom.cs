@@ -6,10 +6,15 @@ using DG.Tweening;
 public class LevelManagerRandom : MonoBehaviour
 {
     public float timeBetweenTiles = .3f;
-    public float tileSpawnAnimationTime = .5f;
     public Transform container;
     public List<SOLevelTileSetup> levelTileBaseSetups;
 
+    [Header("Animation")]
+    public float scaleDuration = .25f;
+    public float scaleTimeBetweenTiles = .1f;
+    public Ease ease = Ease.OutBounce;
+
+    [Header("Tiles List")]
     [SerializeField] private int _index;
     [SerializeField] private List<LevelTileBase> _spawnedTiles = new List<LevelTileBase>();
     private SOLevelTileSetup _currentSetup;
@@ -21,7 +26,7 @@ public class LevelManagerRandom : MonoBehaviour
 
     private void CreateLevel()
     {
-        StartCoroutine(CreateLevelTileCoroutine());
+        CreateLevelTileCoroutine();
     }
 
     private void CreateLevelTile(List<LevelTileBase> list)
@@ -32,8 +37,6 @@ public class LevelManagerRandom : MonoBehaviour
         {
             var lastTile = _spawnedTiles[_spawnedTiles.Count - 1];
             spawnedTile.transform.position = lastTile.endTile.position;
-            spawnedTile.transform.DOMoveZ(lastTile.endTile.position.z - 3, .2f);
-            spawnedTile.transform.DOMoveZ(lastTile.endTile.position.z, tileSpawnAnimationTime).SetEase(Ease.OutBounce);
         }
         else
         {
@@ -64,11 +67,11 @@ public class LevelManagerRandom : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Alpha0))
         {
-            StartCoroutine(CreateLevelTileCoroutine());
+            CreateLevelTileCoroutine();
         }
     }
 
-    IEnumerator CreateLevelTileCoroutine()
+    private void CreateLevelTileCoroutine()
     {
         CleanSpawnedTiles();
 
@@ -88,19 +91,33 @@ public class LevelManagerRandom : MonoBehaviour
         for (int i = 0; i < _currentSetup.tilesNumberStart; i++)
         {
             CreateLevelTile(_currentSetup.levelTilesStart);
-            yield return new WaitForSeconds(timeBetweenTiles);
         }
 
         for (int i = 0; i < _currentSetup.tilesNumber; i++)
         {
             CreateLevelTile(_currentSetup.levelTiles);
-            yield return new WaitForSeconds(timeBetweenTiles);
         }
 
         for (int i = 0; i < _currentSetup.tilesNumberEnd; i++)
         {
             CreateLevelTile(_currentSetup.levelTilesEnd);
-            yield return new WaitForSeconds(timeBetweenTiles);
+        }
+        StartCoroutine(ScaleTilesByTime());
+    }
+
+    IEnumerator ScaleTilesByTime()
+    {
+        foreach(var t in _spawnedTiles)
+        {
+            t.transform.localScale = Vector3.zero;
+        }
+
+        yield return null;
+
+        for(int i = 0; i < _spawnedTiles.Count; i++)
+        {
+            _spawnedTiles[i].transform.DOScale(1, scaleDuration).SetEase(ease);
+            yield return new WaitForSeconds(scaleTimeBetweenTiles);
         }
     }
 }
