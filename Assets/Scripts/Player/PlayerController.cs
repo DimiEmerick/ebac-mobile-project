@@ -31,6 +31,7 @@ public class PlayerController : Singleton<PlayerController>
     private Vector3 _startPosition;
     [SerializeField] private BounceHelper _bounceHelper;
 
+    #region MÉTODOS PÚBLICOS
     public void StartRun()
     {
         _canRun = true;
@@ -41,7 +42,9 @@ public class PlayerController : Singleton<PlayerController>
     {
         if(_bounceHelper != null) _bounceHelper.Bounce();
     }
+    #endregion
 
+    #region MÉTODOS PRIVADOS
     private void EndGame(AnimatorManager.AnimationType animationType = AnimatorManager.AnimationType.IDLE)
     {
         _canRun = false;
@@ -54,6 +57,14 @@ public class PlayerController : Singleton<PlayerController>
         t.DOMoveZ(1.25f, .75f).SetRelative().SetEase(Ease.OutCubic);
     }
 
+    private void StartScale()
+    {
+        this.transform.localScale = Vector3.zero;
+        this.transform.DOScale(Vector3.one, .75f).SetEase(Ease.OutBack);
+    }
+    #endregion
+
+    #region MÉTODOS UNITY
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == tagEnemy)
@@ -78,6 +89,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         _startPosition = transform.position;
         ResetSpeed();
+        StartScale();
     }
 
     private void Update()
@@ -91,6 +103,7 @@ public class PlayerController : Singleton<PlayerController>
         transform.position = Vector3.Lerp(transform.position, _pos, lerpSpeed * Time.deltaTime);
         transform.Translate(transform.forward * _currentSpeed * Time.deltaTime);
     }
+    #endregion
 
     #region POWER-UPS
 
