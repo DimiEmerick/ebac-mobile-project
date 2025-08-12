@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 81028799}
   - component: {fileID: 81028798}
   - component: {fileID: 81028803}
+  - component: {fileID: 81028797}
   m_Layer: 0
   m_Name: PlayerGraphic
   m_TagString: Player
@@ -144,6 +145,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &81028797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81028796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab4bcfe76421fa344afee3a3854b8bf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleDuration: 0.05
+  scaleBounce: 1.1
+  ease: 27
 --- !u!54 &81028798
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -252,16 +268,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d66db593e5c81448cf3a544987a08b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpSpeed: 1
-  target: {fileID: 1934106425}
-  coinCollector: {fileID: 253575123}
-  animatorManager: {fileID: 97648593}
   invincible: 0
   speed: 5
   tagEnemy: Enemy
   tagEndLine: EndLine
   endScreen: {fileID: 1867168311}
   uiTextPowerUp: {fileID: 1131189308}
+  lerpSpeed: 1
+  target: {fileID: 1934106425}
+  coinCollector: {fileID: 253575123}
+  animatorManager: {fileID: 97648593}
+  _bounceHelper: {fileID: 81028797}
 --- !u!4 &97648592 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5156129202013452133, guid: 89e20167823a30d459856414377997d1, type: 3}
@@ -1125,7 +1142,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 912788868}
-  m_LocalRotation: {x: 0.29797283, y: -0.11854464, z: 0.037321676, w: 0.9464494}
+  m_LocalRotation: {x: 0.29797286, y: -0.11854459, z: 0.03732166, w: 0.94644946}
   m_LocalPosition: {x: 2.83, y: 8.52, z: -11.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1210,7 +1227,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.29797283, y: -0.11854464, z: 0.037321676, w: 0.9464494}
+  m_LocalRotation: {x: 0.29797286, y: -0.11854459, z: 0.03732166, w: 0.94644946}
   m_LocalPosition: {x: 2.83, y: 8.52, z: -11.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

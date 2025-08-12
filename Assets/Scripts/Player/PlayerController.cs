@@ -7,6 +7,13 @@ using DG.Tweening;
 
 public class PlayerController : Singleton<PlayerController>
 {
+    public bool invincible = false;
+    public float speed = 1f;
+    public string tagEnemy = "Enemy";
+    public string tagEndLine = "EndLine";
+    public GameObject endScreen;
+    public TextMeshPro uiTextPowerUp;
+
     [Header("Lerp")]
     public float lerpSpeed = 1f;
     public Transform target;
@@ -17,23 +24,22 @@ public class PlayerController : Singleton<PlayerController>
     [Header("Animation")]
     public AnimatorManager animatorManager;
 
-    public bool invincible = false;
-    public float speed = 1f;
-    public string tagEnemy = "Enemy";
-    public string tagEndLine = "EndLine";
-    public GameObject endScreen;
-    public TextMeshPro uiTextPowerUp;
-
     private bool _canRun;
     private float _currentSpeed;
     private float _baseSpeedOfAnimation = 5f;
     private Vector3 _pos;
     private Vector3 _startPosition;
+    [SerializeField] private BounceHelper _bounceHelper;
 
     public void StartRun()
     {
         _canRun = true;
         animatorManager.Play(AnimatorManager.AnimationType.RUN, _currentSpeed / _baseSpeedOfAnimation);
+    }
+
+    public void Bounce()
+    {
+        if(_bounceHelper != null) _bounceHelper.Bounce();
     }
 
     private void EndGame(AnimatorManager.AnimationType animationType = AnimatorManager.AnimationType.IDLE)

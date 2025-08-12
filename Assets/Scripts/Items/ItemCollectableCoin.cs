@@ -42,7 +42,6 @@ public class ItemCollectableCoin : ItemCollectableBase
         _collect = true;
         ItemManager.Instance.AddCoins();
         Debug.Log("Coletou um coin!");
-
-        // PlayerController.Instance.Bounce();
+        PlayerController.Instance.Bounce();
     }
 }
