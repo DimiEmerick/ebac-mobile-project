@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2657543833113610318}
   - component: {fileID: 3201023865882413913}
   - component: {fileID: 2649854950474090471}
+  - component: {fileID: 3952009597133599231}
   m_Layer: 0
   m_Name: PFB_Enemy
   m_TagString: Enemy
@@ -95,3 +96,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3952009597133599231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188146872459511883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8290f3bf5b25224f9606fae8fc6fc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positions: []
+  duration: 2

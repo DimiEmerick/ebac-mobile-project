@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovementHelper : MonoBehaviour
 {
     public List<Transform> positions;
-    public float duration = 1f;
+    public float duration = 2f;
 
     private int _index = 0;
 
