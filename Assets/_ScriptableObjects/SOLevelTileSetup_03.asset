@@ -22,6 +22,9 @@ MonoBehaviour:
   - {fileID: 4966115457430245804, guid: 326b598d43c7b8243bca16c5f1b9c8a3, type: 3}
   - {fileID: 2107403418265562509, guid: 57ebf80ac2acd01409a3b5daab592233, type: 3}
   - {fileID: 2107403418265562509, guid: 358aac713dd14e9409808eb74e77a3c6, type: 3}
+  - {fileID: 2107403418265562509, guid: d4e49cedda445a840915fa3d79919631, type: 3}
+  - {fileID: 2107403418265562509, guid: 9d907684d9530be428f18266cb1d4b73, type: 3}
+  - {fileID: 2107403418265562509, guid: 708fcdb95910a3c478309028914a122e, type: 3}
   levelTilesStart:
   - {fileID: 2107403418265562509, guid: 63f704874fd1da0458054a412e1dda6c, type: 3}
   levelTilesEnd:

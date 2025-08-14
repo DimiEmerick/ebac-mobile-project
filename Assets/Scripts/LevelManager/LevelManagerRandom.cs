@@ -72,7 +72,7 @@ public class LevelManagerRandom : MonoBehaviour
         }
     }
 
-    private void CreateLevelTileCoroutine()
+    public void CreateLevelTileCoroutine()
     {
         CleanSpawnedTiles();
 

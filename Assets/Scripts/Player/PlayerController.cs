@@ -13,6 +13,7 @@ public class PlayerController : Singleton<PlayerController>
     public string tagEnemy = "Enemy";
     public string tagEndLine = "EndLine";
     public Vector2 limits = new Vector2(-5, 5);
+    public GameObject deathScreen;
     public GameObject endScreen;
     public TextMeshPro uiTextPowerUp;
 
@@ -47,15 +48,27 @@ public class PlayerController : Singleton<PlayerController>
     {
         if(_bounceHelper != null) _bounceHelper.Bounce();
     }
+
+    public void ResetPosition()
+    {
+        transform.position = new Vector3(0, 0.5f, 0);
+    }
     #endregion
 
     #region MÉTODOS PRIVADOS
+    private void EndGameDeath(AnimatorManager.AnimationType animationType = AnimatorManager.AnimationType.IDLE)
+    {
+        _canRun = false;
+        deathScreen.SetActive(true);
+        animatorManager.Play(animationType);
+    }
+
     private void EndGame(AnimatorManager.AnimationType animationType = AnimatorManager.AnimationType.IDLE)
     {
         _canRun = false;
         endScreen.SetActive(true);
         animatorManager.Play(animationType);
-        if(vfxDeath != null) vfxDeath.Play();
+        ResetSpeed();
     }
 
     private void MoveBack(Transform t)
@@ -77,8 +90,9 @@ public class PlayerController : Singleton<PlayerController>
         {
             if (!invincible) 
             { 
-                EndGame(AnimatorManager.AnimationType.DEATH);
+                EndGameDeath(AnimatorManager.AnimationType.DEATH);
                 MoveBack(collision.transform);
+                if (vfxDeath != null) vfxDeath.Play();
             }
         }
     }

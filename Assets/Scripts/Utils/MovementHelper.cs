@@ -11,7 +11,6 @@ public class MovementHelper : MonoBehaviour
 
     private void Start()
     {
-        transform.position = positions[0].transform.position;
         NextIndex();
         StartCoroutine(StartMovement());
     }
