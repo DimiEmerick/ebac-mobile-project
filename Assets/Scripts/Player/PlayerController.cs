@@ -7,10 +7,12 @@ using DG.Tweening;
 
 public class PlayerController : Singleton<PlayerController>
 {
+    [Header("General")]
     public bool invincible = false;
     public float speed = 1f;
     public string tagEnemy = "Enemy";
     public string tagEndLine = "EndLine";
+    public Vector2 limits = new Vector2(-5, 5);
     public GameObject endScreen;
     public TextMeshPro uiTextPowerUp;
 
@@ -23,6 +25,9 @@ public class PlayerController : Singleton<PlayerController>
 
     [Header("Animation")]
     public AnimatorManager animatorManager;
+
+    [Header("VXF")]
+    public ParticleSystem vfxDeath;
 
     private bool _canRun;
     private float _currentSpeed;
@@ -50,6 +55,7 @@ public class PlayerController : Singleton<PlayerController>
         _canRun = false;
         endScreen.SetActive(true);
         animatorManager.Play(animationType);
+        if(vfxDeath != null) vfxDeath.Play();
     }
 
     private void MoveBack(Transform t)
@@ -99,6 +105,9 @@ public class PlayerController : Singleton<PlayerController>
         _pos = target.position;
         _pos.y = transform.position.y;
         _pos.z = transform.position.z;
+
+        if (_pos.x < limits.x) _pos.x = limits.x;
+        else if (_pos.x > limits.y) _pos.x = limits.y;
 
         transform.position = Vector3.Lerp(transform.position, _pos, lerpSpeed * Time.deltaTime);
         transform.Translate(transform.forward * _currentSpeed * Time.deltaTime);
